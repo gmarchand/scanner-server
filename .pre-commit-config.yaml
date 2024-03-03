@@ -1,0 +1,78 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-docstring-first
+      - id: check-builtin-literals
+      - id: end-of-file-fixer
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: detect-aws-credentials
+      - id: end-of-file-fixer
+      #- id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: sort-simple-yaml
+      #- id: check-added-large-files
+      - id: check-toml
+      #- id: no-commit-to-branch
+      - id: requirements-txt-fixer
+  - repo: https://github.com/myint/autoflake
+    rev: "v2.2.1"
+    hooks:
+      - id: autoflake
+  - repo: https://github.com/psf/black
+    rev: 23.11.0
+    hooks:
+      - id: black
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: "v3.0.3"
+    hooks:
+      - id: prettier
+        types_or: [yaml, json]
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.23.1
+    hooks:
+      - id: toml-sort
+      - id: toml-sort-fix
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint-fix
+  - repo: https://github.com/myint/docformatter
+    rev: v1.7.5
+    hooks:
+      - id: docformatter
+        args: ["--in-place"]
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ["-c", "pyproject.toml"]
+        additional_dependencies: ["bandit[toml]"]
+  - repo: https://github.com/PyCQA/isort
+    rev: "5.12.0"
+    hooks:
+      - id: isort
+  - repo: https://github.com/pre-commit/mirrors-pylint
+    rev: "v3.0.0a5"
+    hooks:
+      - id: pylint
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.1-beta
+    hooks:
+      - id: hadolint
+        args: []
+  - repo: https://github.com/bridgecrewio/checkov.git
+    rev: "3.1.20"
+    hooks:
+      - id: checkov
+  - repo: https://github.com/trussworks/pre-commit-hooks
+    rev: v1.1.1
+    hooks:
+      - id: mdspell
+        args: [--ignore-acronyms]
+      - id: spelling-sort

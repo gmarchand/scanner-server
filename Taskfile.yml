@@ -1,0 +1,22 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+
+    venv:
+      desc: Create local python virtual env
+      cmds:
+        - rm -rf .venv/ || true
+        - python3 -m venv 3.12.0 .venv
+        - .venv/bin/python3 -m pip install --upgrade --quiet pip
+        - .venv/bin/pip3 install --quiet --requirement requirements.txt
+        - .venv/bin/pip3 install --quiet --requirement infrastructure/requirements.txt
+        - .venv/bin/pip3 install --quiet --requirement functions/requirements.txt
+      sources:
+        - requirements.txt
+      generates:
+        - .venv/bin/activate

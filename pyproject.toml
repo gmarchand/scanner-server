@@ -1,0 +1,128 @@
+[tool.autoflake]
+# make changes to files instead of printing diffs
+in-place = true
+# the file; this is skipped if there are any uses of `__all__` or `del` in the file
+expand-star-imports = true
+# remove all unused imports (not just those from the standard library)
+remove-all-unused-imports = true
+# exclude __init__.py when removing unused imports
+ignore-init-module-imports = true
+# remove all duplicate keys in objects
+remove-duplicate-keys = true
+# remove unused variables
+remove-unused-variables = true
+
+[tool.bandit]
+exclude_dirs = ["doc", "cdk.out", ".venv", ".pytest_cache"]
+skips = ["B310"]
+
+[tool.pylint.basic]
+# Naming style matching correct argument names.
+argument-naming-style = "snake_case"
+# Naming style matching correct function names.
+function-naming-style = "snake_case"
+# Naming style matching correct variable names.
+variable-naming-style = "snake_case"
+# Naming style matching correct method names.
+method-naming-style = "snake_case"
+# Naming style matching correct module names.
+module-naming-style = "snake_case"
+# Naming style matching correct attribute names.
+attr-naming-style = "snake_case"
+# Naming style matching correct class constant names.
+class-const-naming-style = "UPPER_CASE"
+# Naming style matching correct class names.
+class-naming-style = "PascalCase"
+# Naming style matching correct constant names.
+const-naming-style = "UPPER_CASE"
+# Bad variable names which should always be refused, separated by a comma.
+bad-names = ["foo", "bar", "baz", "toto", "tutu", "tata"]
+
+[tool.pylint.main]
+# When enabled, pylint would attempt to guess common misconfiguration and emit
+# user-friendly hints instead of false-positive error messages.
+suggestion-mode = true
+
+[tool.pylint.messages_control]
+disable = [
+  "arguments-differ",
+  "attribute-defined-outside-init",
+  "blacklisted-name",
+  "duplicate-code",
+  "fixme",
+  "import-error",
+  "no-member",
+  "no-name-in-module",
+  "protected-access",
+  "stop-iteration-return",
+  "too-few-public-methods",
+  "too-many-arguments",
+  "too-many-branches",
+  "too-many-instance-attributes",
+  "too-many-lines",
+  "too-many-locals",
+  "too-many-return-statements",
+  "too-many-statements",
+  "abstract-method",
+  "chained-comparison",
+  "eval-used",
+  "exec-used",
+  "expression-not-assigned",
+  "global-statement",
+  "missing-docstring",
+  "redefined-argument-from-local",
+  "redefined-outer-name",
+  "reimported",
+  "too-many-ancestors",
+  "unexpected-special-method-signature",
+  "unnecessary-lambda",
+  "dangerous-default-value",
+  "E1120",
+  "R1705",
+  "W0703",
+  "W0612",
+  "W1401",
+  "W0613",
+  "R0903",
+  "R0913",
+  "C0103",
+  "R0914",
+  "C0304",
+  "F0401",
+  "W0402",
+  "E1101",
+  "W0614",
+  "C0111",
+  "C0301",
+  "R1732"
+]
+
+[tool.pylint.similarities]
+# Comments are removed from the similarity computation
+ignore-comments = true
+# Docstrings are removed from the similarity computation
+ignore-docstrings = true
+# Imports are removed from the similarity computation
+ignore-imports = true
+# Signatures are removed from the similarity computation
+ignore-signatures = true
+# Minimum lines number of a similarity.
+min-similarity-lines = 4
+
+[tool.pytest.ini_options]
+norecursedirs = ".svn _build tmp* cdk.out"
+log_format = "%(asctime)s %(levelname)s %(message)s"
+log_date_format = "%Y/%m/%d %H-%M-%S"
+log_cli = "True"
+log_cli_level = "INFO"
+log_file = "logs/pytest-logs.txt"
+log_file_level = "INFO"
+env_files = ".env"
+testpaths = ["tests"]
+pythonpath = [
+  ".",
+  "application"
+]
+filterwarnings = [
+  "ignore::DeprecationWarning"
+]
